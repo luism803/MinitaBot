@@ -1,0 +1,1 @@
+exports.messageEvent = require('./message/message');
