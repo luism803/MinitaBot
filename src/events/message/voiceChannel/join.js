@@ -1,15 +1,10 @@
 const Discord = require('discord.js');
-const voiceDiscord = require('@discordjs/voice');
+const Voice = require('../../../funtions/voice/voice'); 
 
 module.exports = (message) => {
-    //check if the message author is in a voice channel
-    let connection = voiceDiscord.joinVoiceChannel({
-        guildId: message.guild.id,
-        channelId: message.member.voice.channel.id,
-        adapterCreator: message.guild.voiceAdapterCreator
-    })
-
-    connection.on(voiceDiscord.VoiceConnectionStatus.Ready, () => {
-        console.log("Voice connection ready");
-    })
+    //faltan comprobaciones
+    if(!message.member.voice.channel)
+        message.reply("Join a channel first.");
+    else
+        Voice.join(message.guild, message.member.voice.channel.id);
 }

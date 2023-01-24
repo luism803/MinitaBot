@@ -4,28 +4,37 @@ const saludar = require('./basics/saludar');
 const borrar = require('./basics/borrar');
 const join = require('./voiceChannel/join');
 const leave = require('./voiceChannel/leave');
+const playLocal = require('./voiceChannel/playLocal');
+const uwu = require('./basics/uwu');
 
 module.exports = (client) => {
     client.on('messageCreate', (message) => {
         if(message.author.bot)
             return;
-
-        if (message.content === 'Hola') {
+        let content = message.content.toLowerCase()
+        if (content === 'Hola') {
             saludar(message);
             return;
         }
-
-        if(message.content.startsWith("borrar ")){
+        if(content.startsWith("borrar ")){
             borrar(message);
             return;
         }
-        if(message.content === "join"){
+        if(content === "join"){
             join(message);
             return;
         }
-        if(message.content === "leave"){
+        if(content === "leave"){
           leave(message);
           return;
+        }
+        if(content === "a"){
+            playLocal(message)
+            return;
+        }
+        if(content === "uwu"){
+            uwu(message);
+            return;
         }
     });
 }
